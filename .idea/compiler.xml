@@ -6,10 +6,21 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="block3-maven-package" />
+        <module name="block5-command-line-runner" />
         <module name="block3-create-repo-git" />
         <module name="block1-process-file-and-streams" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="block5-command" target="20" />
+      <module name="block5-command-line-runner (1) (com.bosonit.ejercicio)" target="20" />
+      <module name="block5-command-line-runner (2) (org.example)" target="20" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="block5-command-line-runner" options="" />
+      <module name="block5-command-line-runner (1) (com.bosonit.ejercicio)" options="-parameters" />
+    </option>
   </component>
 </project>
