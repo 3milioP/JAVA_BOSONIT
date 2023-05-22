@@ -1,0 +1,5 @@
+spring:
+  profiles:
+    active: PRO
+bd:
+  url: pro.bosonit.com:5432
