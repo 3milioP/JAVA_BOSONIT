@@ -1,5 +1,6 @@
 package com.example.ejercicio.block7crudvalidation.domain;
 
+import com.example.ejercicio.block7crudvalidation.exceptions.UnprocessableEntityException;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -42,21 +43,20 @@ public class Persona {
     String imagen_url;
     Date termination_date;
 
-    public void validarPersona() throws Exception {
-        if (usuario == null) { throw new Exception("Usuario no puede ser nulo"); }
-        if (usuario.length() < 6) { throw new Exception("El nombre debe contener entre 6 y 10 caracteres");}
-        if (usuario.length() > 10) { throw new Exception("Longitud de usuario no puede ser mayor a 10 carácteres");}
-        if (password == null) { throw new Exception("Debes introducir una contraseña");}
-        if (name == null) { throw new Exception("Debes introducir un nombre"); }
-        if (company_email == null) { throw new Exception("Debes introducir un mail de compañía"); }
-        if (personal_email == null) { throw new Exception("Debes introducir un mail personal"); }
-        if (city == null) { throw new Exception("Debes introducir una ciudad"); }
-        if (active == null) { throw new Exception("Debes introducir un valor"); }
-        if (created_date == null) { throw new Exception("Debes introducir una fecha"); }
+    public void validarPersona() throws UnprocessableEntityException {
+        if (usuario == null) { throw new UnprocessableEntityException("Usuario no puede ser nulo"); }
+        if (usuario.length() < 6) { throw new UnprocessableEntityException("El nombre debe contener entre 6 y 10 caracteres");}
+        if (usuario.length() > 10) { throw new UnprocessableEntityException("Longitud de usuario no puede ser mayor a 10 carácteres");}
+        if (password == null) { throw new UnprocessableEntityException("Debes introducir una contraseña");}
+        if (name == null) { throw new UnprocessableEntityException("Debes introducir un nombre"); }
+        if (company_email == null) { throw new UnprocessableEntityException("Debes introducir un mail de compañía"); }
+        if (personal_email == null) { throw new UnprocessableEntityException("Debes introducir un mail personal"); }
+        if (city == null) { throw new UnprocessableEntityException("Debes introducir una ciudad"); }
+        if (active == null) { throw new UnprocessableEntityException("Debes introducir un valor"); }
+        if (created_date == null) { throw new UnprocessableEntityException("Debes introducir una fecha"); }
     }
 
-    public Persona(PersonaInputDTO personaInputDTO) throws Exception {
-        this.id_persona = personaInputDTO.getId_persona();
+    public Persona(PersonaInputDTO personaInputDTO) {
         this.usuario = personaInputDTO.getUsuario();
         this.password = personaInputDTO.getPassword();
         this.name = personaInputDTO.getName();
@@ -68,7 +68,6 @@ public class Persona {
         this.created_date = personaInputDTO.getCreated_date();
         this.imagen_url = personaInputDTO.getImagen_url();
         this.termination_date = personaInputDTO.getTermination_date();
-        validarPersona();
     }
 
     public PersonaOutputDTO personaToPersonaOutputDTO() {

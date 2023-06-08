@@ -7,7 +7,6 @@ import com.example.ejercicio.block7crudvalidation.domain.Persona;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.net.URI;
 import java.util.List;
 
@@ -19,11 +18,7 @@ public class controllers {
 
     @GetMapping("/{id}")
     public ResponseEntity<PersonaOutputDTO> getPersonaById(@PathVariable int id) {
-        try {
             return ResponseEntity.ok().body(personaService.getPersonaById(id));
-        } catch (Exception e) {
-            return ResponseEntity.notFound().build();
-        }
     }
 
     @GetMapping
@@ -41,8 +36,18 @@ public class controllers {
     }
 
     @PostMapping
-    public ResponseEntity<PersonaOutputDTO> addPersona(@RequestBody PersonaInputDTO persona) throws Exception {
+    public ResponseEntity<PersonaOutputDTO> addPersona(@RequestBody PersonaInputDTO persona) {
         URI location = URI.create("/persona");
         return ResponseEntity.created(location).body(personaService.addPersona(persona));
+    }
+
+    @DeleteMapping
+    public ResponseEntity<String> deletePersonaById(@RequestParam int id) {
+        return personaService.deletePersonaById(id);
+    }
+
+    @PutMapping
+    public ResponseEntity<String> updatePersona(@RequestParam int id, @RequestBody PersonaInputDTO persona) {
+        return personaService.updatePersona(id, persona);
     }
 }
