@@ -1,8 +1,8 @@
 package com.example.ejercicio.block7crudvalidation.controller;
 
-import com.example.ejercicio.block7crudvalidation.application.PersonaServiceImpl;
-import com.example.ejercicio.block7crudvalidation.controller.dto.PersonaInputDTO;
-import com.example.ejercicio.block7crudvalidation.controller.dto.PersonaOutputDTO;
+import com.example.ejercicio.block7crudvalidation.application.persona.PersonaServiceImpl;
+import com.example.ejercicio.block7crudvalidation.controller.dto.persona.PersonaInputDTO;
+import com.example.ejercicio.block7crudvalidation.controller.dto.persona.PersonaOutputDTO;
 import com.example.ejercicio.block7crudvalidation.domain.Persona;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("persona")
-public class controllers {
+public class PersonaControllers {
     @Autowired
     PersonaServiceImpl personaService;
 

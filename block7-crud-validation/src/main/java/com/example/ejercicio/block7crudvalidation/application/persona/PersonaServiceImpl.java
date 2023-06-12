@@ -1,7 +1,7 @@
-package com.example.ejercicio.block7crudvalidation.application;
+package com.example.ejercicio.block7crudvalidation.application.persona;
 
-import com.example.ejercicio.block7crudvalidation.controller.dto.PersonaInputDTO;
-import com.example.ejercicio.block7crudvalidation.controller.dto.PersonaOutputDTO;
+import com.example.ejercicio.block7crudvalidation.controller.dto.persona.PersonaInputDTO;
+import com.example.ejercicio.block7crudvalidation.controller.dto.persona.PersonaOutputDTO;
 import com.example.ejercicio.block7crudvalidation.domain.Persona;
 import com.example.ejercicio.block7crudvalidation.exceptions.EntityNotFoundException;
 import com.example.ejercicio.block7crudvalidation.exceptions.UnprocessableEntityException;

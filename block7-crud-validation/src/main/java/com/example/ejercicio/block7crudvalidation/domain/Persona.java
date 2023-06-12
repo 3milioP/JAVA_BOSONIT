@@ -1,28 +1,30 @@
 package com.example.ejercicio.block7crudvalidation.domain;
 
 import com.example.ejercicio.block7crudvalidation.exceptions.UnprocessableEntityException;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
+import lombok.*;
 import jakarta.validation.constraints.Size;
 import org.antlr.v4.runtime.misc.NotNull;
-import com.example.ejercicio.block7crudvalidation.controller.dto.PersonaInputDTO;
-import com.example.ejercicio.block7crudvalidation.controller.dto.PersonaOutputDTO;
+import com.example.ejercicio.block7crudvalidation.controller.dto.persona.PersonaInputDTO;
+import com.example.ejercicio.block7crudvalidation.controller.dto.persona.PersonaOutputDTO;
 
 import java.util.Date;
 
 @Entity
-@Data
+@Table(name = "Persona")
+@Getter
+@Setter
 @NoArgsConstructor
-@AllArgsConstructor
 public class Persona {
     @Id
     @GeneratedValue
     int id_persona;
     @Size(min=6, max=10)
+    @OneToOne
+    @JoinColumn(name="id_student")
+    Estudiante estudiante;
+    @OneToOne
+    Profesor profesor;
     @NotNull
     String usuario;
     @NotNull

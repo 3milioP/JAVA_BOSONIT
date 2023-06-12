@@ -1,4 +1,4 @@
-package com.example.ejercicio.block7crudvalidation.controller.dto;
+package com.example.ejercicio.block7crudvalidation.controller.dto.persona;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
