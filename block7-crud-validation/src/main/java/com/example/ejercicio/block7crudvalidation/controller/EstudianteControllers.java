@@ -18,7 +18,7 @@ public class EstudianteControllers {
 
     @GetMapping("/{id}")
     public ResponseEntity<EstudianteOutputSimpleDTO> getEstudianteById(
-            @PathVariable String id, @RequestParam (name="OutputType", defaultValue="simple") String OutputType
+            @PathVariable int id, @RequestParam (name="OutputType", defaultValue="simple", required = false) String OutputType
     ) {
         return ResponseEntity.ok().body(estudianteService.getEstudianteById(OutputType, id));
     }
@@ -41,12 +41,12 @@ public class EstudianteControllers {
     }
 
     @DeleteMapping
-    public ResponseEntity<String> deleteEstudianteById(@RequestParam String id) {
+    public ResponseEntity<String> deleteEstudianteById(@RequestParam int id) {
         return estudianteService.deleteEstudianteById(id);
     }
 
     @PutMapping
-    public ResponseEntity<String> updateEsudiante(@RequestParam String id, @RequestBody EstudianteInputDTO estudiante) {
+    public ResponseEntity<String> updateEsudiante(@RequestParam int id, @RequestBody EstudianteInputDTO estudiante) {
         return estudianteService.updateEstudiante(id, estudiante);
     }
 }

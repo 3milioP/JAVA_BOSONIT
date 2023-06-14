@@ -1,7 +1,5 @@
 package com.example.ejercicio.block7crudvalidation.controller.dto.estudiante;
 
-import com.example.ejercicio.block7crudvalidation.domain.Persona;
-import com.example.ejercicio.block7crudvalidation.domain.Profesor;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

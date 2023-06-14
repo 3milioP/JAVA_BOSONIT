@@ -2,9 +2,11 @@ package com.example.ejercicio.block7crudvalidation.application.estudiante_asigna
 
 import com.example.ejercicio.block7crudvalidation.controller.dto.estudiante_asignatura.Estudiante_AsignaturaInputDTO;
 import com.example.ejercicio.block7crudvalidation.controller.dto.estudiante_asignatura.Estudiante_AsignaturaOutputDTO;
+import com.example.ejercicio.block7crudvalidation.domain.Estudiante;
 import com.example.ejercicio.block7crudvalidation.domain.Estudiante_Asignatura;
 import com.example.ejercicio.block7crudvalidation.exceptions.EntityNotFoundException;
 import com.example.ejercicio.block7crudvalidation.exceptions.UnprocessableEntityException;
+import com.example.ejercicio.block7crudvalidation.repository.EstudianteRepository;
 import com.example.ejercicio.block7crudvalidation.repository.Estudiante_AsignaturaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -18,6 +20,8 @@ public class EstudianteAsignaturaServiceImpl implements Estudiante_AsignaturaSer
 
     @Autowired
     Estudiante_AsignaturaRepository estudianteAsignaturaRepository;
+    @Autowired
+    EstudianteRepository estudianteRepository;
 
     @Override
     public Estudiante_AsignaturaOutputDTO addEstudianteAsignatura(Estudiante_AsignaturaInputDTO estudianteAsignatura) {
@@ -25,9 +29,23 @@ public class EstudianteAsignaturaServiceImpl implements Estudiante_AsignaturaSer
 
     }
     @Override
-    public Estudiante_AsignaturaOutputDTO getEstudianteAsignaturaById(String id) {
+    public Estudiante_AsignaturaOutputDTO getEstudianteAsignaturaById(int id) {
         return estudianteAsignaturaRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("No se encuentra la asignatura con id " +id))
                 .estudianteAsignaturaToEstudianteAsignaturaOutputDTO();
+    }
+
+    @Override
+    public Iterable<Estudiante_Asignatura> getAsignaturasEstudiante(int idEstudiante) {
+        Optional<Estudiante> asignaturasEstudiante = estudianteRepository.findById(idEstudiante);
+
+        if (asignaturasEstudiante.isPresent()) {
+            Iterable<Estudiante_Asignatura> asignaturas = asignaturasEstudiante.get().getEstudianteAsignaturas();
+
+            return asignaturas;
+        } else {
+            throw new EntityNotFoundException("Asignaturas de estudiante con id de estudiante: " + idEstudiante + " no han sido encontradas");
+        }
+
     }
 
     @Override
@@ -38,7 +56,7 @@ public class EstudianteAsignaturaServiceImpl implements Estudiante_AsignaturaSer
     }
 
     @Override
-    public ResponseEntity<String> deleteEstudianteAsignaturaById(String id) {
+    public ResponseEntity<String> deleteEstudianteAsignaturaById(int id) {
         if (estudianteAsignaturaRepository.existsById(id)) {
             estudianteAsignaturaRepository.deleteById(id);
 
@@ -49,12 +67,12 @@ public class EstudianteAsignaturaServiceImpl implements Estudiante_AsignaturaSer
     }
 
     @Override
-    public ResponseEntity<String> updateEstudianteAsignatura(String id, Estudiante_AsignaturaInputDTO estudianteAsignaturaInputDTO) {
+    public ResponseEntity<String> updateEstudianteAsignatura(int id, Estudiante_AsignaturaInputDTO estudianteAsignaturaInputDTO) {
         Optional<Estudiante_Asignatura> optionalEstudianteAsignatura = estudianteAsignaturaRepository.findById(id);
         if (optionalEstudianteAsignatura.isPresent()) {
             Estudiante_Asignatura estudianteAsignatura = optionalEstudianteAsignatura.get();
-            estudianteAsignatura.setId_student(estudianteAsignaturaInputDTO.getId_student());
-            estudianteAsignatura.setSignature(estudianteAsignaturaInputDTO.getSignature());
+            estudianteAsignatura.setId_student(estudianteAsignaturaInputDTO.getEstudiantes());
+            estudianteAsignatura.setAsignatura(estudianteAsignaturaInputDTO.getAsignatura());
             estudianteAsignatura.setComents(estudianteAsignaturaInputDTO.getComents());
             estudianteAsignatura.setInitial_date(estudianteAsignaturaInputDTO.getInitial_date());
             estudianteAsignatura.setFinish_date(estudianteAsignaturaInputDTO.getFinish_date());

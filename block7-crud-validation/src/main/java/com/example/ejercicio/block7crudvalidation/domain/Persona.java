@@ -24,6 +24,7 @@ public class Persona {
     @JoinColumn(name="id_student")
     Estudiante estudiante;
     @OneToOne
+    @JoinColumn(name="id_profesor")
     Profesor profesor;
     @NotNull
     String usuario;
@@ -87,5 +88,7 @@ public class Persona {
                 this.termination_date
         );
     }
+
+
 
 }

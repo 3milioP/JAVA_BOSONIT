@@ -1,22 +1,23 @@
 package com.example.ejercicio.block7crudvalidation.controller.dto.estudiante;
 
-import com.example.ejercicio.block7crudvalidation.controller.dto.persona.PersonaOutputDTO;
 import com.example.ejercicio.block7crudvalidation.domain.Estudiante_Asignatura;
 import com.example.ejercicio.block7crudvalidation.domain.Persona;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class EstudianteOutputSimpleDTO {
+public class EstudianteOutputDTO {
     int id_student;
+    Persona id_persona;
+    List<Estudiante_Asignatura> estudianteAsignaturas;
     int num_hours_week;
     String coments;
     String branch;
-
 }
-

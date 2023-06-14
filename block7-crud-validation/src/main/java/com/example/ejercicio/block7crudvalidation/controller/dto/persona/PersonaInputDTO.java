@@ -1,5 +1,7 @@
 package com.example.ejercicio.block7crudvalidation.controller.dto.persona;
 
+import com.example.ejercicio.block7crudvalidation.domain.Estudiante;
+import com.example.ejercicio.block7crudvalidation.domain.Profesor;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,7 +11,8 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PersonaInputDTO {
-
+    Profesor id_profesor;
+    Estudiante id_estudiante;
     String usuario;
     String password;
     String name;

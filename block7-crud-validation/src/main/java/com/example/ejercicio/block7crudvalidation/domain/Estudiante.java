@@ -1,13 +1,12 @@
 package com.example.ejercicio.block7crudvalidation.domain;
 
 import com.example.ejercicio.block7crudvalidation.controller.dto.estudiante.EstudianteInputDTO;
+import com.example.ejercicio.block7crudvalidation.controller.dto.estudiante.EstudianteOutputDTO;
 import com.example.ejercicio.block7crudvalidation.controller.dto.estudiante.EstudianteOutputFullDTO;
 import com.example.ejercicio.block7crudvalidation.controller.dto.estudiante.EstudianteOutputSimpleDTO;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
-import org.hibernate.annotations.GenericGenerator;
-
 import java.util.List;
 
 @Entity
@@ -17,17 +16,19 @@ import java.util.List;
 @NoArgsConstructor
 public class Estudiante {
     @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "org.hibernate.id.UUIDGenerator")
-    String id_student;
+    @GeneratedValue
+    int id_student;
     @OneToOne
     @JoinColumn(name = "id_persona")
     Persona id_persona;
-    @OneToMany
-    List<Estudiante_Asignatura> estudianteAsignatura;
+    @ManyToMany
+    List<Estudiante_Asignatura> estudianteAsignaturas;
     @NotNull
     int num_hours_week;
     String coments;
+    @OneToOne
+    @JoinColumn(name = "profesor")
+    Profesor id_profesor;
     @NotNull
     String branch;
 
@@ -42,8 +43,10 @@ public class Estudiante {
             return new EstudianteOutputFullDTO(
                     this.id_student,
                     this.id_persona.getId_persona(),
+                    this.estudianteAsignaturas,
                     this.num_hours_week,
                     this.coments,
+                    this.id_profesor.getId_professor(),
                     this.branch,
                     this.id_persona.getUsuario(),
                     this.id_persona.getName(),
@@ -59,7 +62,6 @@ public class Estudiante {
         } else {
             return new EstudianteOutputSimpleDTO(
                     this.id_student,
-                    this.id_persona.getId_persona(),
                     this.num_hours_week,
                     this.coments,
                     this.branch
@@ -71,7 +73,16 @@ public class Estudiante {
     public EstudianteOutputSimpleDTO estudianteToEstudianteSImpleOutputDTO() {
         return new EstudianteOutputSimpleDTO(
                 this.id_student,
-                this.id_persona.getId_persona(),
+                this.num_hours_week,
+                this.coments,
+                this.branch
+        );
+    }
+    public EstudianteOutputDTO estudianteFullDT() {
+        return new EstudianteOutputDTO(
+                this.id_student,
+                this.id_persona,
+                this.estudianteAsignaturas,
                 this.num_hours_week,
                 this.coments,
                 this.branch

@@ -16,7 +16,7 @@ public class ProfesorControllers {
     ProfesorServiceImpl profesorService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<ProfesorOutputDTO> getProfesorById(@PathVariable String id) {
+    public ResponseEntity<ProfesorOutputDTO> getProfesorById(@PathVariable int id) {
         return ResponseEntity.ok().body(profesorService.getProfesorById(id));
     }
 
@@ -31,16 +31,16 @@ public class ProfesorControllers {
     @PostMapping
     public ResponseEntity<ProfesorOutputDTO> addProfesor(@RequestBody ProfesorInputDTO profesor) {
         URI location = URI.create("/profesor");
-        return ResponseEntity.created(location).body(profesorService.addProfesor(profesor));
+        return ResponseEntity.created(location).body(profesorService.addProfesorToPersona(profesor));
     }
 
     @DeleteMapping
-    public ResponseEntity<String> deleteProfesorById(@RequestParam String id) {
+    public ResponseEntity<String> deleteProfesorById(@RequestParam int id) {
         return profesorService.deleteProfesorById(id);
     }
 
     @PutMapping
-    public ResponseEntity<String> updateProfesor(@RequestParam String id, @RequestBody ProfesorInputDTO profesor) {
+    public ResponseEntity<String> updateProfesor(@RequestParam int id, @RequestBody ProfesorInputDTO profesor) {
         return profesorService.updateProfesor(id, profesor);
     }
 }

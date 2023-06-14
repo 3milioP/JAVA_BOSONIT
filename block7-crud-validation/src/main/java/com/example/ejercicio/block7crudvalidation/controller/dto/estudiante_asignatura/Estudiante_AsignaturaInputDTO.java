@@ -6,13 +6,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Estudiante_AsignaturaInputDTO {
-    Estudiante id_student;
-    String signature;
+    int id_asignatura;
+    List<Estudiante> estudiantes;
+    String asignatura;
     String coments;
     Date initial_date;
     Date finish_date;

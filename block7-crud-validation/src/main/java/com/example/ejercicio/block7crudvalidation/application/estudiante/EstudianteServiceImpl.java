@@ -1,6 +1,7 @@
 package com.example.ejercicio.block7crudvalidation.application.estudiante;
 
 import com.example.ejercicio.block7crudvalidation.controller.dto.estudiante.EstudianteInputDTO;
+import com.example.ejercicio.block7crudvalidation.controller.dto.estudiante.EstudianteOutputDTO;
 import com.example.ejercicio.block7crudvalidation.controller.dto.estudiante.EstudianteOutputSimpleDTO;
 import com.example.ejercicio.block7crudvalidation.domain.Estudiante;
 import com.example.ejercicio.block7crudvalidation.domain.Persona;
@@ -13,8 +14,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import java.util.Optional;
-
-import static java.util.stream.Collectors.toList;
 
 @Service
 public class EstudianteServiceImpl implements EstudianteService {
@@ -33,16 +32,20 @@ public class EstudianteServiceImpl implements EstudianteService {
 
             persona.setEstudiante(estudiante);
             estudiante.setId_persona(persona);
-        estudianteRepository.save(estudiante);
 
-        return new EstudianteOutputSimpleDTO(estudiante.getId_student(), estudiante.getId_persona().getId_persona(), estudiante.getNum_hours_week(),
-        estudiante.getComents(), estudiante.getBranch());
+        return estudianteRepository.save(estudiante).estudianteToEstudianteSImpleOutputDTO();
 
 }
     @Override
-    public EstudianteOutputSimpleDTO getEstudianteById(String type, String id) {
+    public EstudianteOutputSimpleDTO getEstudianteById(String type, int id) {
         return estudianteRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("No se encuentra el Estudiante con id " +id))
                 .estudianteToEstudianteOutputDTO(type);
+    }
+
+    @Override
+    public EstudianteOutputDTO getEstudianteByid2(int id) {
+        return estudianteRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("NO se encuentra el estudiante con id "+id))
+                .estudianteFullDT();
     }
 
     @Override
@@ -53,8 +56,15 @@ public class EstudianteServiceImpl implements EstudianteService {
     }
 
     @Override
-    public ResponseEntity<String> deleteEstudianteById(String id) {
-        if (estudianteRepository.existsById(id)) {
+    public ResponseEntity<String> deleteEstudianteById(int id) {
+        Optional<Estudiante> optionalEstudiante = estudianteRepository.findById(id);
+
+        if (optionalEstudiante.isPresent()){
+            Estudiante estudiante = optionalEstudiante.get();
+            Persona persona = estudiante.getId_persona();
+
+            persona.setEstudiante(null);
+
             estudianteRepository.deleteById(id);
 
             return ResponseEntity.ok().body("Estudiante con id "+ id + "ha sido borrado");
@@ -64,7 +74,7 @@ public class EstudianteServiceImpl implements EstudianteService {
     }
 
     @Override
-    public ResponseEntity<String> updateEstudiante(String id, EstudianteInputDTO estudianteInput) {
+    public ResponseEntity<String> updateEstudiante(int id, EstudianteInputDTO estudianteInput) {
         Optional<Estudiante> optionalStudent = estudianteRepository.findById(id);
         if (optionalStudent.isPresent()) {
             Estudiante student = optionalStudent.get();

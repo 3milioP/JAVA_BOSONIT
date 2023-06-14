@@ -1,9 +1,11 @@
 package com.example.ejercicio.block7crudvalidation.controller;
 
 import com.example.ejercicio.block7crudvalidation.application.persona.PersonaServiceImpl;
+import com.example.ejercicio.block7crudvalidation.controller.dto.persona.PersonaDetailOutputDTO;
 import com.example.ejercicio.block7crudvalidation.controller.dto.persona.PersonaInputDTO;
 import com.example.ejercicio.block7crudvalidation.controller.dto.persona.PersonaOutputDTO;
 import com.example.ejercicio.block7crudvalidation.domain.Persona;
+import com.example.ejercicio.block7crudvalidation.repository.PersonaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,11 +17,24 @@ import java.util.List;
 public class PersonaControllers {
     @Autowired
     PersonaServiceImpl personaService;
+    @Autowired
+    PersonaRepository personaRepository;
 
-    @GetMapping("/{id}")
+    /*@GetMapping("/{id}")
     public ResponseEntity<PersonaOutputDTO> getPersonaById(@PathVariable int id) {
             return ResponseEntity.ok().body(personaService.getPersonaById(id));
+    }*/
+
+    @GetMapping("/{id}")
+    public ResponseEntity<PersonaDetailOutputDTO> getPersonaById(
+            @PathVariable int id,
+            @RequestParam(required = false, defaultValue = "false") boolean includeEstudiante,
+            @RequestParam(required = false, defaultValue = "false") boolean includeProfesor) {
+        PersonaDetailOutputDTO personaDTO = personaService.getPersonaById(id, includeProfesor);
+        return ResponseEntity.ok(personaDTO);
     }
+
+
 
     @GetMapping
     public Iterable<PersonaOutputDTO> getAllPersonas(

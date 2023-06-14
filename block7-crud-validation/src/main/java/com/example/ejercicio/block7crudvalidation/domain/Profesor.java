@@ -6,6 +6,9 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
+import java.util.Date;
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -13,17 +16,18 @@ import lombok.*;
 public class Profesor {
     @Id
     @GeneratedValue
-    String id_professor;
+    int id_professor;
     @OneToOne
     @JoinColumn(name = "id_persona")
     Persona id_persona;
+    @OneToMany(mappedBy = "id_profesor")
+    List<Estudiante> id_estudiante;
     String coments;
     @NotNull
     String branch;
 
 
     public Profesor(ProfesorInputDTO profesorInputDTO) {
-        this.id_persona = profesorInputDTO.getId_persona();
         this.coments = profesorInputDTO.getComents();
         this.branch = profesorInputDTO.getBranch();
     }
@@ -31,7 +35,8 @@ public class Profesor {
     public ProfesorOutputDTO profesorToProfesorOutputDTO(){
         return new ProfesorOutputDTO(
                 this.id_professor,
-                this.id_persona,
+                this.id_persona.getId_persona(),
+                this.id_estudiante,
                 this.coments,
                 this.branch
         );

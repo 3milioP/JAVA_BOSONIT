@@ -7,9 +7,10 @@ import com.example.ejercicio.block7crudvalidation.exceptions.UnprocessableEntity
 import org.springframework.http.ResponseEntity;
 
 public interface ProfesorService {
-    ProfesorOutputDTO addProfesor(ProfesorInputDTO professor) throws UnprocessableEntityException;
+    ProfesorOutputDTO addProfesorToPersona(ProfesorInputDTO profesorInputDTO) throws UnprocessableEntityException;
     Iterable<ProfesorOutputDTO> getAllProfesores(int pageNumber, int pageSize);
-    ProfesorOutputDTO getProfesorById(String id) throws EntityNotFoundException;
-    ResponseEntity<String> deleteProfesorById(String id) throws  EntityNotFoundException;
-    ResponseEntity<String> updateProfesor(String id, ProfesorInputDTO professor) throws EntityNotFoundException;
+    ProfesorOutputDTO getProfesorById(int id) throws EntityNotFoundException;
+    ResponseEntity<String> deleteProfesorById(int id) throws  EntityNotFoundException;
+    ResponseEntity<String> updateProfesor(int id, ProfesorInputDTO professor) throws EntityNotFoundException;
+    void addEstudianteToProfesor(int student_id, int profesor_id);
 }

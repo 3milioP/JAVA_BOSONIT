@@ -1,8 +1,10 @@
 package com.example.ejercicio.block7crudvalidation.repository;
 
 import com.example.ejercicio.block7crudvalidation.domain.Estudiante;
+import com.example.ejercicio.block7crudvalidation.domain.Persona;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface EstudianteRepository extends JpaRepository<Estudiante, String> {
+import java.util.List;
 
+public interface EstudianteRepository extends JpaRepository<Estudiante, Integer> {
 }
