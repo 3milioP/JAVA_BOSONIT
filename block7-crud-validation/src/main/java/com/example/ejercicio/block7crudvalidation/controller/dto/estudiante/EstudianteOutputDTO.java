@@ -15,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 public class EstudianteOutputDTO {
     int id_student;
-    Persona id_persona;
+    Persona persona;
     List<Estudiante_Asignatura> estudianteAsignaturas;
     int num_hours_week;
     String coments;

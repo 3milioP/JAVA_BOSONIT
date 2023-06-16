@@ -1,5 +1,6 @@
 package com.example.ejercicio.block7crudvalidation.domain;
 
+import com.example.ejercicio.block7crudvalidation.controller.dto.persona.PersonaDetailOutputDTO;
 import com.example.ejercicio.block7crudvalidation.exceptions.UnprocessableEntityException;
 import jakarta.persistence.*;
 import lombok.*;
@@ -18,13 +19,14 @@ import java.util.Date;
 public class Persona {
     @Id
     @GeneratedValue
+    @Column(name="id_persona")
     int id_persona;
     @Size(min=6, max=10)
     @OneToOne
-    @JoinColumn(name="id_student")
+    @JoinColumn(name="person")
     Estudiante estudiante;
     @OneToOne
-    @JoinColumn(name="id_profesor")
+    @JoinColumn(name="persona")
     Profesor profesor;
     @NotNull
     String usuario;
@@ -88,7 +90,5 @@ public class Persona {
                 this.termination_date
         );
     }
-
-
 
 }

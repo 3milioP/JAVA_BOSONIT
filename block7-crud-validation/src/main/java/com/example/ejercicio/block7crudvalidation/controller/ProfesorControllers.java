@@ -31,7 +31,7 @@ public class ProfesorControllers {
     @PostMapping
     public ResponseEntity<ProfesorOutputDTO> addProfesor(@RequestBody ProfesorInputDTO profesor) {
         URI location = URI.create("/profesor");
-        return ResponseEntity.created(location).body(profesorService.addProfesorToPersona(profesor));
+        return ResponseEntity.created(location).body(profesorService.addProfesor(profesor));
     }
 
     @DeleteMapping

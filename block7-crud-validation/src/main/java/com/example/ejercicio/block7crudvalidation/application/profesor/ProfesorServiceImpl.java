@@ -1,8 +1,11 @@
 package com.example.ejercicio.block7crudvalidation.application.profesor;
 
+import com.example.ejercicio.block7crudvalidation.controller.dto.estudiante.EstudianteInputDTO;
+import com.example.ejercicio.block7crudvalidation.controller.dto.estudiante.EstudianteOutputSimpleDTO;
 import com.example.ejercicio.block7crudvalidation.controller.dto.profesor.ProfesorInputDTO;
 import com.example.ejercicio.block7crudvalidation.controller.dto.profesor.ProfesorOutputDTO;
 import com.example.ejercicio.block7crudvalidation.domain.Estudiante;
+import com.example.ejercicio.block7crudvalidation.domain.Estudiante_Asignatura;
 import com.example.ejercicio.block7crudvalidation.domain.Persona;
 import com.example.ejercicio.block7crudvalidation.domain.Profesor;
 import com.example.ejercicio.block7crudvalidation.exceptions.EntityNotFoundException;
@@ -29,13 +32,25 @@ public class ProfesorServiceImpl implements ProfesorService {
     EstudianteRepository estudianteRepository;
 
     @Override
-    public ProfesorOutputDTO addProfesorToPersona(ProfesorInputDTO profesorInputDTO) {
+    public ProfesorOutputDTO addProfesor(ProfesorInputDTO profesorInputDTO) throws EntityNotFoundException {
 
-        Persona persona = personaRepository.findById(profesorInputDTO.getId_persona()).orElseThrow();
-        Profesor profesor = new Profesor(profesorInputDTO);
+        Persona id_persona = personaRepository.findById(profesorInputDTO.getPersona()).orElseThrow();
 
-        persona.setProfesor(profesor);
-        profesor.setId_persona((persona));
+        if (estudianteRepository.findByPerson(id_persona).isPresent())
+            throw new EntityNotFoundException("El id proporcionado ya pertenece a un estudiante");
+
+        if (profesorRepository.findByPersona(id_persona).isPresent())
+            throw new EntityNotFoundException("El id proporcionado ya pertenece a un profesor");
+
+        Profesor profesor = new Profesor(profesorInputDTO, id_persona);
+        if (profesorInputDTO.getId_estudiante() != null) {
+            profesorInputDTO.getId_estudiante().forEach(estudianteID -> {
+                Estudiante estudiante = estudianteRepository.findById(estudianteID.getId_student()).orElseThrow(() -> new RuntimeException("Id student not found"));
+                profesor.getId_estudiante().add(estudiante);
+            });
+        }
+        id_persona.setProfesor(profesor);
+        profesor.setPersona(id_persona);
 
         return profesorRepository.save(profesor).profesorToProfesorOutputDTO();
 
@@ -67,7 +82,7 @@ public class ProfesorServiceImpl implements ProfesorService {
 
         if (optionalProfesor.isPresent()){
             Profesor profesor = optionalProfesor.get();
-            Persona persona = profesor.getId_persona();
+            Persona persona = profesor.getPersona();
 
             persona.setProfesor(null);
 
@@ -81,7 +96,7 @@ public class ProfesorServiceImpl implements ProfesorService {
     @Override
     public ResponseEntity<String> updateProfesor(int id, ProfesorInputDTO profesorInput) {
         Optional<Profesor> optionalProfesor = profesorRepository.findById(id);
-        Optional<Persona> optionalPersona = personaRepository.findById(profesorInput.getId_persona());
+        Optional<Persona> optionalPersona = personaRepository.findById(profesorInput.getPersona());
 
         if (optionalProfesor.isPresent()) {
             Profesor profesor = optionalProfesor.get();
@@ -89,7 +104,7 @@ public class ProfesorServiceImpl implements ProfesorService {
             profesor.setBranch(profesorInput.getBranch());
 
             if (optionalPersona.isPresent()) {
-                profesor.setId_persona(optionalPersona.get());
+                profesor.setPersona(optionalPersona.get());
             }
 
 

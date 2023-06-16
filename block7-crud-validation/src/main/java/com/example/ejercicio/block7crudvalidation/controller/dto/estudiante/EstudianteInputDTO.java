@@ -1,15 +1,18 @@
 package com.example.ejercicio.block7crudvalidation.controller.dto.estudiante;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Data
+import java.util.List;
+
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class EstudianteInputDTO {
-    int id_persona;
+    int persona;
+    int id_profesor;
     int num_hours_week;
     String coments;
     String branch;
+    List<Integer> asignaturas;
 }

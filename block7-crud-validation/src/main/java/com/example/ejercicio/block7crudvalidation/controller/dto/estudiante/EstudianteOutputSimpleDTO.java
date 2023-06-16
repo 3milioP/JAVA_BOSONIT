@@ -3,13 +3,12 @@ package com.example.ejercicio.block7crudvalidation.controller.dto.estudiante;
 import com.example.ejercicio.block7crudvalidation.controller.dto.persona.PersonaOutputDTO;
 import com.example.ejercicio.block7crudvalidation.domain.Estudiante_Asignatura;
 import com.example.ejercicio.block7crudvalidation.domain.Persona;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class EstudianteOutputSimpleDTO {

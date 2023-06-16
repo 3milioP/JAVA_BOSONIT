@@ -8,7 +8,7 @@ import com.example.ejercicio.block7crudvalidation.exceptions.UnprocessableEntity
 import org.springframework.http.ResponseEntity;
 
 public interface EstudianteService {
-    EstudianteOutputSimpleDTO addEstudiante(EstudianteInputDTO estudianteInputDTO) throws UnprocessableEntityException;
+    EstudianteOutputSimpleDTO addEstudiante(EstudianteInputDTO estudianteInputDTO) throws UnprocessableEntityException, Exception;
     Iterable<EstudianteOutputSimpleDTO> getAllEstudiantes(int pageNumber, int pageSize);
     EstudianteOutputSimpleDTO getEstudianteById(String type, int id) throws EntityNotFoundException;
     ResponseEntity<String> deleteEstudianteById(int id) throws  EntityNotFoundException;

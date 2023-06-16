@@ -13,6 +13,7 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
 @Table(name = "Asignaturas_Estudiantes")
 public class Estudiante_Asignatura {
     @Id

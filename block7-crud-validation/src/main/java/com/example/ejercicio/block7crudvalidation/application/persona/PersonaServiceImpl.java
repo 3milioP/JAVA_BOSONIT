@@ -53,7 +53,7 @@ public class PersonaServiceImpl implements PersonaService {
     }*/
 
     @Override
-    public PersonaDetailOutputDTO getPersonaById(int id, boolean includeProfesor) {
+    public PersonaDetailOutputDTO getPersonaById(int id) {
         Persona persona = personaRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("No se encontró una persona con el ID " + id));
 
@@ -70,35 +70,24 @@ public class PersonaServiceImpl implements PersonaService {
         personaDTO.setImagen_url(persona.getImagen_url());
         personaDTO.setTermination_date(persona.getTermination_date());
 
-        // Verificar si es profesor y agregar los datos de profesor correspondientes
-        if (includeProfesor && persona.getProfesor() != null) {
-            EstudianteOutputDTO estudianteDTO = estudianteService.getEstudianteByid2(persona.getEstudiante().getId_student());
-            personaDTO.setEstudiante(estudianteDTO);
+        Optional<Profesor> optionalProfesor = profesorRepository.findByPersona(persona);
+        Optional<Estudiante> optionalEstudiante = estudianteRepository.findByPerson(persona);
 
-            /*Profesor profesor = persona.getProfesor();
-            ProfesorOutputDTO profesorDTO = new ProfesorOutputDTO();
-            profesorDTO.setId_professor(profesor.getId_professor());
-            profesorDTO.setComents(profesor.getComents());
-            profesorDTO.setBranch(profesor.getBranch());
-            // Agregar otros atributos de Profesor si los hay
-            personaDTO.setProfesor(profesorDTO);*/
+
+        if (!optionalProfesor.isEmpty()) {
+            Profesor profesor = optionalProfesor.get();
+            personaDTO.setProfesor(profesor.profesorToProfesorOutputDTO());
+
         }
 
         // Verificar si es estudiante y agregar los datos de estudiante correspondientes
-        if (persona.getEstudiante() != null) {
-            Estudiante estudiante = persona.getEstudiante();
-            EstudianteOutputDTO estudianteDTO = new EstudianteOutputDTO();
-            estudianteDTO.setId_student(estudiante.getId_student());
-            estudianteDTO.setComents(estudiante.getComents());
-            estudianteDTO.setNum_hours_week(estudiante.getNum_hours_week());
-            estudianteDTO.setBranch(estudiante.getBranch());
-            // Agregar otros atributos de Estudiante si los hay
-            personaDTO.setEstudiante(estudianteDTO);
+        if (!optionalEstudiante.isEmpty()) {
+            Estudiante estudiante = optionalEstudiante.get();
+            personaDTO.setEstudiante(estudiante.estudianteToEstudianteSImpleOutputDTO());
         }
 
         return personaDTO;
     }
-
 
     @Override
     public Iterable<PersonaOutputDTO> getAllPersonas(int pageNumber, int pageSize) {
@@ -164,26 +153,6 @@ public class PersonaServiceImpl implements PersonaService {
             persona.setCreated_date(personaInput.getCreated_date());
             persona.setImagen_url(personaInput.getImagen_url());
             persona.setTermination_date(personaInput.getTermination_date());
-
-            if (personaInput.getId_profesor() != null) {
-                Optional<Profesor> optionalProfesor = profesorRepository.findById(personaInput.getId_profesor().getId_professor());
-                if (optionalProfesor.isPresent()) {
-                    Profesor profesor = optionalProfesor.get();
-                    persona.setProfesor(profesor);
-                } else {
-                    throw new EntityNotFoundException("Profesor con id: " + personaInput.getId_profesor() + " no ha sido encontrado");
-                }
-            }
-
-            if (personaInput.getId_estudiante() != null) {
-                Optional<Estudiante> optionalEstudiante = estudianteRepository.findById(personaInput.getId_estudiante().getId_student());
-                if (optionalEstudiante.isPresent()) {
-                    Estudiante estudiante = optionalEstudiante.get();
-                    persona.setEstudiante(estudiante);
-                } else {
-                    throw new EntityNotFoundException("Estudiante con id: " + personaInput.getId_estudiante() + " no ha sido encontrado");
-                }
-            }
 
             try {
                 persona.validarPersona();

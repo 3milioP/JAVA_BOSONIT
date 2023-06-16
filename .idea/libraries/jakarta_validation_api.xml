@@ -1,9 +1,11 @@
 <component name="libraryTable">
   <library name="jakarta.validation.api" type="repository">
-    <properties maven-id="jakarta.validation:jakarta.validation-api:3.0.2" />
-    <CLASSES>
-      <root url="jar://$MAVEN_REPOSITORY$/jakarta/validation/jakarta.validation-api/3.0.2/jakarta.validation-api-3.0.2.jar!/" />
-    </CLASSES>
+    <properties maven-id="jakarta.validation:jakarta.validation-api:3.0.2">
+      <exclude>
+        <dependency maven-id="jakarta.validation:jakarta.validation-api" />
+      </exclude>
+    </properties>
+    <CLASSES />
     <JAVADOC />
     <SOURCES />
   </library>
