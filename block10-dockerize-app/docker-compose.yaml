@@ -1,0 +1,21 @@
+version: "3"
+services:
+  myapp:
+    build: .
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
+    networks:
+      - mynetwork
+  db:
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: contrasena
+      POSTGRES_DB: test
+    networks:
+      - mynetwork
+networks:
+  mynetwork:
+    external: false

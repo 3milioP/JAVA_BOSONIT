@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/Block 8 Junit/block10-dockerize-app/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Block 8 Junit/block10-dockerize-app/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Block 8 Junit/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Block 8 Junit/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Maven-block5-propertie/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Maven-block5-propertie/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Maven-block5-properties/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Maven-block5-properties/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/block10-dockerize-app/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/block10-dockerize-app/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/block5-command-line-runner/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/block5-logging/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/block5-logging/src/main/resources" charset="UTF-8" />

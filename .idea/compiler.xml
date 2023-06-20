@@ -7,14 +7,16 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="block7-crud-validation" />
+        <module name="block7-crud-validation (2)" />
+        <module name="block7-crud-validation (1)" />
         <module name="block5-logging" />
         <module name="Maven-block5-propertie" />
+        <module name="Block8Junit" />
         <module name="Maven-block5-properties" />
         <module name="block7-crud" />
-        <module name="block5-command-line-runner" />
         <module name="block5-profiles" />
         <module name="block3-create-repo-git" />
+        <module name="block5-command-line-runner" />
         <module name="block6-simple-controllers" />
         <module name="block6-person-controllers" />
         <module name="block1-process-file-and-streams" />
@@ -22,15 +24,18 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="block10-dockerize-app" target="20" />
       <module name="block5-command" target="20" />
       <module name="block5-command-line-runner (1) (com.bosonit.ejercicio)" target="20" />
       <module name="block5-command-line-runner (2) (org.example)" target="20" />
+      <module name="block7-crud-validation" target="17" />
       <module name="Maven-block5-propertie" target="20" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="Maven-block5-properties" options="-parameters" />
+      <module name="block10-dockerize-app" options="" />
       <module name="block5-command-line-runner" options="-parameters" />
       <module name="block5-command-line-runner (1) (com.bosonit.ejercicio)" options="-parameters" />
       <module name="block5-logging" options="-parameters" />
@@ -40,6 +45,8 @@
       <module name="block6-simple-controllers" options="-parameters" />
       <module name="block7-crud" options="-parameters" />
       <module name="block7-crud-validation" options="-parameters" />
+      <module name="block7-crud-validation (1)" options="-parameters" />
+      <module name="block7-crud-validation (2)" options="-parameters" />
     </option>
   </component>
 </project>
