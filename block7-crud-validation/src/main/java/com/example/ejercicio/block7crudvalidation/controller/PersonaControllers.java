@@ -17,8 +17,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("persona")
-@CrossOrigin("*")
+@RequestMapping("")
 public class PersonaControllers {
     @Autowired
     PersonaServiceImpl personaService;
@@ -28,12 +27,12 @@ public class PersonaControllers {
     @Autowired
     FeignClient feignClient;
 
-    @GetMapping("/{id}")
+    @GetMapping("persona/{id}")
     public ResponseEntity<PersonaOutputDTO> getPersonaById(@PathVariable int id) {
             return ResponseEntity.ok().body(personaService.getPersonaById(id));
     }
-
-    @GetMapping
+    @CrossOrigin(origins = "*")
+    @GetMapping("/getall")
     public Iterable<PersonaOutputDTO> getAllPersonas(
             @RequestParam(defaultValue = "0", required = false) int pageNumber,
             @RequestParam(defaultValue = "4", required = false) int pageSize
@@ -41,29 +40,36 @@ public class PersonaControllers {
         return personaService.getAllPersonas(pageNumber, pageSize);
     }
 
-    @GetMapping("/nombre/{nombre}")
+    @GetMapping("persona/nombre/{nombre}")
     public ResponseEntity<List<Persona>> getPersonasByUsuario(@PathVariable String nombre) {
         List<Persona> personas = personaService.getPersonasByUsuario(nombre);
         return ResponseEntity.ok(personas);
     }
 
-    @GetMapping("/profesor/{id}")
+    @GetMapping("persona/profesor/{id}")
     public ProfesorOutputDTO getProfesor(@PathVariable int id) {
         return feignClient.getProfesorById(id);
     }
 
-    @PostMapping
+    @PostMapping("/persona")
     public ResponseEntity<PersonaOutputDTO> addPersona(@RequestBody PersonaInputDTO persona) {
         URI location = URI.create("/persona");
         return ResponseEntity.created(location).body(personaService.addPersona(persona));
     }
 
-    @DeleteMapping
+    @CrossOrigin(origins = "*")
+    @PostMapping("/addperson")
+    public ResponseEntity<PersonaOutputDTO> addPersonaCors(@RequestBody PersonaInputDTO persona) {
+        URI location = URI.create("/addperson");
+        return ResponseEntity.created(location).body(personaService.addPersona(persona));
+    }
+
+    @DeleteMapping("/persona")
     public ResponseEntity<String> deletePersonaById(@RequestParam int id) {
         return personaService.deletePersonaById(id);
     }
 
-    @PutMapping
+    @PutMapping("/persona")
     public ResponseEntity<String> updatePersona(@RequestParam int id, @RequestBody PersonaInputDTO persona) {
         return personaService.updatePersona(id, persona);
     }

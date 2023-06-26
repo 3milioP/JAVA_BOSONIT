@@ -1,0 +1,10 @@
+Método Static - Pertenece a la clase, no pertenece a ningún objeto
+Todos los métodos estáticos son nombredelmétodo.implementación
+
+Public - Para poder acceder a este método desde cualquier otra clase
+
+void - no devuelve ningún dato
+
+final - especifica que ese valor no puede ser modificado una vez que se almacena
+
+private - restringe el acceso sólo a la clase donde se ha creado

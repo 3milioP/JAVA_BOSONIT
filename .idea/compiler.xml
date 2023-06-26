@@ -21,6 +21,7 @@
         <module name="block6-person-controllers" />
         <module name="block1-process-file-and-streams" />
         <module name="block6-path-variable-headers" />
+        <module name="block11-upload-download-files" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -36,6 +37,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="Maven-block5-properties" options="-parameters" />
       <module name="block10-dockerize-app" options="" />
+      <module name="block11-upload-download-files" options="-parameters" />
       <module name="block5-command-line-runner" options="-parameters" />
       <module name="block5-command-line-runner (1) (com.bosonit.ejercicio)" options="-parameters" />
       <module name="block5-logging" options="-parameters" />
