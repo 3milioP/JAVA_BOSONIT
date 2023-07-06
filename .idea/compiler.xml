@@ -19,6 +19,7 @@
         <module name="block13-mongodb" />
         <module name="block7-crud (1)" />
         <module name="block5-command-line-runner" />
+        <module name="block7-crud-validation-JUnit-Mockito" />
         <module name="block6-simple-controllers" />
         <module name="block6-person-controllers" />
         <module name="block1-process-file-and-streams" />
@@ -56,6 +57,7 @@
       <module name="block7-crud-validation" options="-parameters" />
       <module name="block7-crud-validation (1)" options="-parameters" />
       <module name="block7-crud-validation (2)" options="-parameters" />
+      <module name="block7-crud-validation-JUnit-Mockito" options="-parameters" />
     </option>
   </component>
 </project>
