@@ -24,7 +24,7 @@ import org.springframework.data.domain.PageRequest;
 
 @RunWith(MockitoJUnitRunner.class)
 @SpringBootTest
-public class Block7CrudValidationJUnitMockitoApplicationTests {
+public class PersonaServiceImplTest {
 
 	@Mock
 	PersonaRepository personaRepositoryMock;
