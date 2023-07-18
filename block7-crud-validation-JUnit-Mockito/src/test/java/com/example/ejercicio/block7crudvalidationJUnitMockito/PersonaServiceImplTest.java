@@ -8,6 +8,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -21,6 +22,7 @@ import com.example.ejercicio.block7crudvalidationJUnitMockito.repository.Persona
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 @RunWith(MockitoJUnitRunner.class)
 @SpringBootTest
@@ -155,4 +157,5 @@ public class PersonaServiceImplTest {
 // Verificar las interacciones con el mock
 		verify(personaRepositoryMock).findByNombre(nombre);
 	}
+
 }
