@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="maven-wrapper1">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Downloads/block12-kafka/block12-kafka/.mvn/wrapper/maven-wrapper.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
