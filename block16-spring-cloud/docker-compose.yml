@@ -1,0 +1,66 @@
+version: "4.20.1"
+
+services:
+  backend:
+    image: backend-image:block16Cloud
+    build: ./backend
+    container_name: backend-container
+    ports:
+      - "8081:8081"
+    environment:
+      - eureka.client.serviceUrl.defaultZone=http://eureka-naming-server:8761/eureka/
+    networks:
+      - red-cloud
+
+
+  backend-front:
+    image: backend-front-image:block16Cloud
+    build: ./backend-front
+    container_name: backend-front-container
+    ports:
+      - "8082:8082"
+    environment:
+      - feignViaje.url=http://backend:8081
+      - feignCliente.url=http://backend:8081
+      - eureka.client.serviceUrl.defaultZone=http://eureka-naming-server:8761/eureka/
+    networks:
+      - red-cloud
+    depends_on:
+      - backend
+
+
+
+  eureka-naming-server:
+    image: eureka-naming-server-image:block16Cloud
+    build: ./eureka-naming-server
+    container_name: eureka-naming-server-container
+    ports:
+      - "8761:8761"
+    networks:
+      - red-cloud
+
+
+
+  api-gateway:
+    image: api-gateway-image:block16Cloud
+    build: ./api-gateway
+    container_name: api-gateway-container
+    ports:
+      - "8080:8080"
+    environment:
+      - spring.cloud.gateway.routes[0].id=cliente
+      - spring.cloud.gateway.routes[0].uri=http://backend:8081/
+      - spring.cloud.gateway.routes[0].predicates[0]=Path=/cliente/**
+      - spring.cloud.gateway.routes[1].id=trip
+      - spring.cloud.gateway.routes[1].uri=http://backend:8081/
+      - spring.cloud.gateway.routes[1].predicates[0]=Path=/trip/**
+      - spring.cloud.gateway.routes[2].id=ticket
+      - spring.cloud.gateway.routes[2].uri=http://backend-front:8082/
+      - spring.cloud.gateway.routes[2].predicates[0]=Path=/ticket/**
+      - eureka.client.serviceUrl.defaultZone= http://eureka-naming-server:8761/eureka
+    networks:
+      - red-cloud
+
+networks:
+  red-cloud:
+    driver: bridge

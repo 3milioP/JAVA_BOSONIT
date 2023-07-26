@@ -3,8 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/JAVA_BOSONIT.iml" filepath="$PROJECT_DIR$/.idea/JAVA_BOSONIT.iml" />
-      <module fileurl="file://$PROJECT_DIR$/block1-process-file-and-streams/block1-process-file-and-streams.iml" filepath="$PROJECT_DIR$/block1-process-file-and-streams/block1-process-file-and-streams.iml" />
-      <module fileurl="file://$PROJECT_DIR$/block3-maven-package/block3-maven-package.iml" filepath="$PROJECT_DIR$/block3-maven-package/block3-maven-package.iml" />
+      <module fileurl="file://$PROJECT_DIR$/block16-spring-cloud.iml" filepath="$PROJECT_DIR$/block16-spring-cloud.iml" />
     </modules>
   </component>
 </project>
