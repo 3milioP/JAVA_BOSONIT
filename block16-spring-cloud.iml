@@ -11,12 +11,16 @@
     <output-test url="file://$MODULE_DIR$/block16-spring-cloud/target/test-classes" />
     <output url="file://$MODULE_DIR$/block16-spring-cloud/target/classes" />
     <output-test url="file://$MODULE_DIR$/block16-spring-cloud/target/test-classes" />
+    <output url="file://$MODULE_DIR$/block16-spring-cloud/target/classes" />
+    <output-test url="file://$MODULE_DIR$/block16-spring-cloud/target/test-classes" />
     <content url="file://$MODULE_DIR$/block16-spring-cloud">
       <sourceFolder url="file://$MODULE_DIR$/block16-spring-cloud/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/block16-spring-cloud/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/block16-spring-cloud/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/block16-spring-cloud/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/block16-spring-cloud/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/block16-spring-cloud/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/block16-spring-cloud/src/main/resources" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/block16-spring-cloud/src/main/resources" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/block16-spring-cloud/src/main/resources" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/block16-spring-cloud/src/main/resources" type="java-resource" />
@@ -27,6 +31,8 @@
       <sourceFolder url="file://$MODULE_DIR$/block16-spring-cloud/src/test/java" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/block16-spring-cloud/src/test/java" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/block16-spring-cloud/src/test/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/block16-spring-cloud/src/test/java" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/block16-spring-cloud/target" />
       <excludeFolder url="file://$MODULE_DIR$/block16-spring-cloud/target" />
       <excludeFolder url="file://$MODULE_DIR$/block16-spring-cloud/target" />
       <excludeFolder url="file://$MODULE_DIR$/block16-spring-cloud/target" />

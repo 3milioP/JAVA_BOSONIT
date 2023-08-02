@@ -33,6 +33,7 @@
         <option value="$PROJECT_DIR$/block16-spring-cloud/backend-Front/pom.xml" />
         <option value="$PROJECT_DIR$/block16-spring-cloud/eureka-naming-server/pom.xml" />
         <option value="$PROJECT_DIR$/block16-spring-cloud/api-gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/block17Batch/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

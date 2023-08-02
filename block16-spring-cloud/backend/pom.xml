@@ -34,6 +34,7 @@
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-config</artifactId>
+			<version>4.0.1</version>
 		</dependency>
 
 		<dependency>
@@ -44,6 +45,7 @@
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+			<version>4.0.0</version>
 		</dependency>
         <dependency>
             <groupId>jakarta.persistence</groupId>
