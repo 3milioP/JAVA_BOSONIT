@@ -1,9 +1,12 @@
 package com.ejercicio.block17Batch.block17Batch.Tiempo;
 
+import java.time.LocalDate;
+import java.util.Date;
+
 public class TiempoOutputDTO {
     String localidad;
-    String fecha;
-    String temperatura;
+    LocalDate fecha;
+    int temperatura;
 
     public TiempoOutputDTO(Tiempo tiempo) {
         this.localidad = tiempo.getLocalidad();

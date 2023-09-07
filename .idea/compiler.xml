@@ -12,6 +12,7 @@
         <module name="block3-create-repo-git" />
         <module name="block13-mongodb" />
         <module name="block7-crud (1)" />
+        <module name="block1-process-file" />
         <module name="backend-front" />
         <module name="block7-crud-validation-JUnit-Mockito" />
         <module name="backend" />
