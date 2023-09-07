@@ -32,10 +32,10 @@
         <module name="block5-command-line-runner" />
         <module name="api-gateway" />
         <module name="block6-simple-controllers" />
-        <module name="block1-process-file-and-streams" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="block1-process-file-and-streams" target="11" />
       <module name="block10-dockerize-app" target="20" />
       <module name="block5-command" target="20" />
       <module name="block5-command-line-runner (1) (com.bosonit.ejercicio)" target="20" />

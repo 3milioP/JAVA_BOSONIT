@@ -33,7 +33,7 @@ public class EstudianteServiceImpl implements EstudianteService {
     @Override
     public EstudianteOutputSimpleDTO addEstudiante(EstudianteInputDTO estudianteInputDTO) throws EntityNotFoundException {
 
-        Persona persona = personaRepository.findById(estudianteInputDTO.getPersona()).orElseThrow();
+        Persona persona = personaRepository.findById(estudianteInputDTO.getPerson()).orElseThrow();
         Profesor profesor = profesorRepository.findById(estudianteInputDTO.getId_profesor()).orElseThrow();
 
         if (estudianteRepository.findById(persona.getId_persona()).isPresent())
@@ -99,7 +99,7 @@ public class EstudianteServiceImpl implements EstudianteService {
         Optional<Estudiante> optionalStudent = estudianteRepository.findById(id);
         if (optionalStudent.isPresent()) {
             Estudiante student = optionalStudent.get();
-            student.setPerson(personaRepository.findById(estudianteInput.getPersona()).get());
+            student.setPerson(personaRepository.findById(estudianteInput.getPerson()).get());
             student.setId_profesor(profesorRepository.findById(estudianteInput.getId_profesor()).get());
             student.setNum_hours_week(estudianteInput.getNum_hours_week());
             student.setComents(estudianteInput.getComents());

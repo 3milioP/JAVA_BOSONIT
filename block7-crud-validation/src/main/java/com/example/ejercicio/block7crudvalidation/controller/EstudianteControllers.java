@@ -31,7 +31,7 @@ public class EstudianteControllers {
         return estudianteService.getAllEstudiantes(pageNumber, pageSize);
     }
 
-    @PostMapping
+    @PostMapping("/addestudiante")
     public ResponseEntity<EstudianteOutputSimpleDTO> addEstudiante(@RequestBody EstudianteInputDTO estudianteInputDTO) {
         try {
             return ResponseEntity.ok().body(estudianteService.addEstudiante(estudianteInputDTO));

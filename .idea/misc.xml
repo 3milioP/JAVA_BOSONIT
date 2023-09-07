@@ -40,6 +40,7 @@
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/Block 8 Junit/block10-dockerize-app/pom.xml" />
+        <option value="$PROJECT_DIR$/block1-process-file-and-streams/pom.xml" />
         <option value="$PROJECT_DIR$/block3-maven-package/block5-command/pom.xml" />
         <option value="$PROJECT_DIR$/untitled/pom.xml" />
       </set>

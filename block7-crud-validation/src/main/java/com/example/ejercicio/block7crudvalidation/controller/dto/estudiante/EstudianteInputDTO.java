@@ -9,7 +9,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class EstudianteInputDTO {
-    int persona;
+    int person;
     int id_profesor;
     int num_hours_week;
     String coments;

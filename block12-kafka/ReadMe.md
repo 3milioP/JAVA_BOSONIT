@@ -20,3 +20,5 @@ bin\windows\kafka-server-start.bat config\server.properties
 kafka-topics.bat --bootstrap-server localhost:9092 --create --topic miTema --partitions 1 --replication-factor 1
 ```
 7. Con esto ya podrías lanzar la aplicación y probarla. Para probarla en local se puede lanzar dos instacias de la misma aplicación cada una en distinto puerto.
+
+
